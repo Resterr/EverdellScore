@@ -3,36 +3,21 @@
 
 let app;
 
-i18next
-    .use(i18nextBrowserLanguageDetector)
-    .use(i18nextHttpBackend)
-    .init({
-        fallbackLng: 'en',
-        // debug: true,
-        saveMissing: false,
-        backend: {
-            loadPath: 'i18n/{{lng}}/{{ns}}.json',
-            addPath: 'i18n/{{lng}}/{{ns}}.missing.json'
-        }
-        // 
-        // useLocalStore: false
-    }, function (err, t) {
-        // for options see
-        // https://github.com/i18next/jquery-i18next#initialize-the-plugin
-        jqueryI18next.init(i18next, $, {
-            useOptionsAttr: true
-        });
-
-        app = new Application();
-
-        // start localizing, details:
-        // https://github.com/i18next/jquery-i18next#usage-of-selector-function
-        $("*").localize();
-        $("#nav-p1-p").append("<span id=\"nav-p1-points\" class=\"badge text-bg-warning\">0</span>");
-        $("#nav-p2-p").append("<span id=\"nav-p2-points\" class=\"badge text-bg-warning\">0</span>");
-        $("#nav-p3-p").append("<span id=\"nav-p3-points\" class=\"badge text-bg-warning\">0</span>");
-        $("#nav-p4-p").append("<span id=\"nav-p4-points\" class=\"badge text-bg-warning\">0</span>");
+// i18next configuration is shared with the category mode, see src/i18n-init.js
+initI18n(function (err, t) {
+    // for options see
+    // https://github.com/i18next/jquery-i18next#initialize-the-plugin
+    jqueryI18next.init(i18next, $, {
+        useOptionsAttr: true
     });
+
+    app = new Application();
+
+    // start localizing, details:
+    // https://github.com/i18next/jquery-i18next#usage-of-selector-function
+    // Point badges live outside the translated label span, so localize() keeps them.
+    $("*").localize();
+});
 
 
 class Application {
@@ -49,12 +34,17 @@ class Application {
         this.newleaf = false;
         this.kindergarten = false;
 
+        // Player count (1-6) and names are shared with the category mode
+        this.playersData = PlayersStore.load();
+        $('#playerCountSelect').val(this.playersData.playerCount);
+        this.buildPlayerTabs();
+
         this.updateData();
 
-        $('#nav-p1-tab').on('click', (e) => { this.activePlayer = this.players[0]; this.updatePlayerOutput(); });
-        $('#nav-p2-tab').on('click', (e) => { this.activePlayer = this.players[1]; this.updatePlayerOutput(); });
-        $('#nav-p3-tab').on('click', (e) => { this.activePlayer = this.players[2]; this.updatePlayerOutput(); });
-        $('#nav-p4-tab').on('click', (e) => { this.activePlayer = this.players[3]; this.updatePlayerOutput(); });
+        $('#nav-tab').on('click', 'a.nav-link', (e) => {
+            this.activePlayer = this.players[parseInt($(e.currentTarget).attr('data-index'), 10)];
+            this.updatePlayerOutput();
+        });
         $("#alert-cardlimit").hide();
 
         // returning something in this function, will result in a message box
@@ -123,6 +113,53 @@ class Application {
         $('#flexSwitchCheckSpirecrest').prop('checked', this.spirecrest);
         $('#flexSwitchCheckMistwood').prop('checked', this.mistwood);
         $('#flexSwitchCheckNewleaf').prop('checked', this.newleaf);
+        $('#flexSwitchCheckKindergarten').prop('checked', this.kindergarten);
+    }
+
+    // Generates one tab + pane per player (pN, N = 1..playerCount)
+    buildPlayerTabs() {
+        $('#nav-tab').empty();
+        $('#nav-tabContent > .player-pane').remove();
+        for (let i = 0; i < this.playersData.playerCount; i++) {
+            const id = 'p' + (i + 1);
+            const label = $('<span class="player-label"></span>');
+            if (this.playersData.names[i]) {
+                label.text(this.playersData.names[i]); // own name: plain text, never translated
+            } else {
+                label.attr('data-i18n', 'gen.player').attr('data-i18n-options', JSON.stringify({ number: i + 1 }));
+            }
+            const link = $('<a class="nav-link" data-bs-toggle="tab" role="tab" href="#"></a>')
+                .attr({
+                    id: 'nav-' + id + '-tab', 'data-bs-target': '#nav-' + id, 'aria-controls': 'nav-' + id,
+                    'aria-selected': i === 0 ? 'true' : 'false', 'data-index': i
+                })
+                .toggleClass('active', i === 0)
+                .append($('<p></p>').attr('id', 'nav-' + id + '-p').append(label, ' ',
+                    $('<span class="badge text-bg-warning">0</span>').attr('id', 'nav-' + id + '-points')));
+            $('#nav-tab').append($('<li class="nav-item" role="presentation"></li>').append(link));
+
+            $('<div class="tab-pane fade player-pane" role="tabpanel" tabindex="0"></div>')
+                .attr({ id: 'nav-' + id, 'aria-labelledby': 'nav-' + id + '-tab' })
+                .toggleClass('show active', i === 0)
+                .insertBefore('#shared-pane');
+        }
+    }
+
+    changePlayerCount() {
+        const count = PlayersStore.clampCount($('#playerCountSelect').val());
+        if (count === this.players.length) return;
+        const apply = () => {
+            this.playersData.playerCount = count;
+            PlayersStore.save(this.playersData);
+            this.buildPlayerTabs();
+            this.reset();
+            $('#nav-tab').localize();
+        };
+        if (this.hasData())
+            this.show_modal(i18next.t("text.data_loss_header"), i18next.t("text.reset_content"), apply,
+                () => $('#playerCountSelect').val(this.players.length));
+        else
+            apply();
     }
 
     btn_reset() {
@@ -130,7 +167,7 @@ class Application {
     }
 
     reset() {
-        this.players = [new Player("p1", this), new Player("p2", this), new Player("p3", this), new Player("p4", this)];
+        this.players = Array.from({ length: this.playersData.playerCount }, (_, i) => new Player("p" + (i + 1), this));
         this.activePlayer = this.players[0];
         this.players.forEach((player) => player.showPlayer());
         this.activeAward = null;
@@ -422,10 +459,7 @@ class Application {
             }
             this.activePlayer.showPlayer();
             $("*").localize();
-            $("#nav-p1-p").append(`<span id='nav-p1-points' class='badge text-bg-warning'>${this.players[0].getTotalPoints()}</span>`);
-            $("#nav-p2-p").append(`<span id='nav-p2-points' class='badge text-bg-warning'>${this.players[1].getTotalPoints()}</span>`);
-            $("#nav-p3-p").append(`<span id='nav-p3-points' class='badge text-bg-warning'>${this.players[2].getTotalPoints()}</span>`);
-            $("#nav-p4-p").append(`<span id='nav-p4-points' class='badge text-bg-warning'>${this.players[3].getTotalPoints()}</span>`);
+            document.documentElement.lang = i18next.language;
         });
     }
 

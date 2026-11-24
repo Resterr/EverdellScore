@@ -8,6 +8,9 @@
     },
     "gen": {
         "player": "Player {{number}} ",
+        "playercount": "Number of players",
+        "mode_tally": "Score by categories",
+        "mode_cards": "Score by cards",
         "lang": "Language",
         "reset": "Reset",
         "town": "Town",
@@ -337,6 +340,27 @@
     },
     "playerpower":{
         "pigs": "Pigs"
+    },
+    "tally": {
+        "settings": "Game settings",
+        "names": "Player names",
+        "newgame": "New game",
+        "newgame_confirm": "Clear all points? Names and settings will be kept.",
+        "hint": "Enter moves to the next field. Empty field = 0.",
+        "results": "Results",
+        "total": "Total",
+        "place": "Place",
+        "category": "Category",
+        "winner": "Winner",
+        "tie": "Tie",
+        "noscores": "No points entered yet",
+        "toggle_sign": "Toggle minus sign",
+        "close": "Close",
+        "group_cards": "Points from cards",
+        "cat_prosperityBonus": "Prosperity bonuses",
+        "cat_tokens": "Point tokens",
+        "cat_pearls": "Pearls (count × 2)",
+        "cat_other": "Other"
     },
     "text": {
         "cardlimit": "Card limit of town is reached",

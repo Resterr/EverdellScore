@@ -8,6 +8,9 @@
     },
     "gen": {
         "player": "Gracz {{number}} ",
+        "playercount": "Liczba graczy",
+        "mode_tally": "Liczenie po kategoriach",
+        "mode_cards": "Liczenie po kartach",
         "lang": "Język",
         "reset": "Reset",
         "town": "Miasto",
@@ -337,6 +340,27 @@
     },
     "playerpower":{
         "pigs": "Świnie"
+    },
+    "tally": {
+        "settings": "Ustawienia gry",
+        "names": "Imiona graczy",
+        "newgame": "Nowa gra",
+        "newgame_confirm": "Wyczyścić wszystkie punkty? Imiona i ustawienia zostaną zachowane.",
+        "hint": "Enter przechodzi do następnego pola. Puste pole = 0.",
+        "results": "Wyniki",
+        "total": "Suma",
+        "place": "Miejsce",
+        "category": "Kategoria",
+        "winner": "Zwycięzca",
+        "tie": "Remis",
+        "noscores": "Nie wpisano jeszcze punktów",
+        "toggle_sign": "Zmień znak (minus)",
+        "close": "Zamknij",
+        "group_cards": "Punkty z kart",
+        "cat_prosperityBonus": "Bonusy pomyślności",
+        "cat_tokens": "Żetony punktów",
+        "cat_pearls": "Perły (liczba × 2)",
+        "cat_other": "Inne"
     },
     "text": {
         "cardlimit": "Limit kart w mieście osiągnięty",

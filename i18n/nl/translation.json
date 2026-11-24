@@ -8,6 +8,9 @@
     },
     "gen": {
         "player": "Speler {{number}} ",
+        "playercount": "Aantal spelers",
+        "mode_tally": "Tellen per categorie",
+        "mode_cards": "Tellen per kaart",
         "lang": "Taal",
         "reset": "Reset",
         "town": "Stad",
@@ -307,6 +310,27 @@
     },
     "playerpower":{
         "pigs": "Pigs"
+    },
+    "tally": {
+        "settings": "Spelinstellingen",
+        "names": "Namen van spelers",
+        "newgame": "Nieuw spel",
+        "newgame_confirm": "Alle punten wissen? Namen en instellingen blijven behouden.",
+        "hint": "Enter gaat naar het volgende veld. Leeg veld = 0.",
+        "results": "Uitslag",
+        "total": "Totaal",
+        "place": "Plaats",
+        "category": "Categorie",
+        "winner": "Winnaar",
+        "tie": "Gelijkspel",
+        "noscores": "Nog geen punten ingevoerd",
+        "toggle_sign": "Teken wisselen",
+        "close": "Sluiten",
+        "group_cards": "Punten van kaarten",
+        "cat_prosperityBonus": "Welvaartbonussen",
+        "cat_tokens": "Puntenfiches",
+        "cat_pearls": "Parels (aantal × 2)",
+        "cat_other": "Overig"
     },
     "text": {
         "cardlimit": "Kaart limiet van de stad is bereikt",

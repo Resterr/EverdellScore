@@ -8,6 +8,9 @@
     },
     "gen": {
         "player": "Jugador {{number}} ",
+        "playercount": "Número de jugadores",
+        "mode_tally": "Puntuar por categorías",
+        "mode_cards": "Puntuar por cartas",
         "lang": "Idioma",
         "reset": "Reiniciar",
         "town": "Ciudad",
@@ -166,6 +169,27 @@
         "royaltea" : "Té Real",
         "stockmarketboom" : "Mercado de Valores en Auge",
         "sunflowerparade" : "Desfile de Girasoles"
+    },
+    "tally": {
+        "settings": "Ajustes de la partida",
+        "names": "Nombres de los jugadores",
+        "newgame": "Nueva partida",
+        "newgame_confirm": "¿Borrar todos los puntos? Se conservarán los nombres y los ajustes.",
+        "hint": "Enter pasa al siguiente campo. Campo vacío = 0.",
+        "results": "Resultados",
+        "total": "Total",
+        "place": "Puesto",
+        "category": "Categoría",
+        "winner": "Ganador",
+        "tie": "Empate",
+        "noscores": "Aún no hay puntos",
+        "toggle_sign": "Cambiar signo",
+        "close": "Cerrar",
+        "group_cards": "Puntos de las cartas",
+        "cat_prosperityBonus": "Bonificaciones de prosperidad",
+        "cat_tokens": "Fichas de puntos",
+        "cat_pearls": "Perlas (cantidad × 2)",
+        "cat_other": "Otros"
     },
     "text": {
         "cardlimit": "Límite de Ciudad alcanzado",

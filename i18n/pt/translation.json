@@ -8,6 +8,9 @@
   },
   "gen": {
     "player": "Jogador {{number}} ",
+    "playercount": "Número de jogadores",
+    "mode_tally": "Pontuar por categorias",
+    "mode_cards": "Pontuar por cartas",
     "lang": "Idioma",
     "reset": "Reiniciar",
     "town": "Cidade",
@@ -297,6 +300,27 @@
   },
   "playerpower": {
     "pigs": "Porcos"
+  },
+  "tally": {
+    "settings": "Configurações do jogo",
+    "names": "Nomes dos jogadores",
+    "newgame": "Novo jogo",
+    "newgame_confirm": "Apagar todos os pontos? Os nomes e as configurações serão mantidos.",
+    "hint": "Enter vai para o próximo campo. Campo vazio = 0.",
+    "results": "Resultados",
+    "total": "Total",
+    "place": "Posição",
+    "category": "Categoria",
+    "winner": "Vencedor",
+    "tie": "Empate",
+    "noscores": "Nenhum ponto inserido ainda",
+    "toggle_sign": "Alterar sinal",
+    "close": "Fechar",
+    "group_cards": "Pontos das cartas",
+    "cat_prosperityBonus": "Bônus de prosperidade",
+    "cat_tokens": "Fichas de pontos",
+    "cat_pearls": "Pérolas (quantidade × 2)",
+    "cat_other": "Outros"
   },
   "text": {
     "cardlimit": "Limite de cartas da cidade foi atingido",
