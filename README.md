@@ -8,7 +8,8 @@ Serverless JS App for counting Everdell Score.
 >   totals and ranking (with ties) are always visible, state is kept in the browser (localStorage);
 > * **1–6 players** in both modes (the card mode moved to `cards.html`);
 > * player names (any language, incl. Polish characters) shared by both modes;
-> * Polish as the default language when no language was chosen before; all six languages are kept.
+> * English is the default language when no language was chosen before; all six languages are kept
+>   (the choice is remembered in the browser).
 
 ## Category scoring mode (fork)
 Pick the number of players (1–6), enter names and enable expansions in *Game settings*. Then type the points of each
@@ -45,7 +46,7 @@ Cookies for storing the chosen language. The category mode stores names and poin
 ## Version 2.0.0 (fork)
 * Category scoring mode (new start page), card mode moved to `cards.html`
 * 1–6 players in both modes, shared player names
-* Polish default language; new texts translated in all six languages
+* English default language (choice remembered); new texts translated in all six languages
 * Handlebars pinned to 4.7.8, broken icon link and obsolete appcache attribute fixed
 
 ## Version 1.6.2

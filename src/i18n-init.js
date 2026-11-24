@@ -1,14 +1,15 @@
 // Shared i18next setup for both modes (tally and cards).
-// Language order: ?lng= query, saved choice (localStorage / cookie), otherwise Polish.
+// Language order: ?lng= query, saved choice (localStorage / cookie), otherwise English.
 // Missing keys always fall back to English, so incomplete translations never show raw keys.
 
-const SUPPORTED_LANGUAGES = ['pl', 'en', 'de', 'es', 'nl', 'pt'];
+const SUPPORTED_LANGUAGES = ['en', 'pl', 'de', 'es', 'nl', 'pt'];
+const DEFAULT_LANGUAGE = 'en';
 
 function initI18n(onReady) {
     const detector = new i18nextBrowserLanguageDetector();
     detector.addDetector({
-        name: 'defaultPolish',
-        lookup: () => 'pl',
+        name: 'defaultLanguage',
+        lookup: () => DEFAULT_LANGUAGE,
         cacheUserLanguage: () => { }
     });
 
@@ -20,7 +21,7 @@ function initI18n(onReady) {
             whitelist: SUPPORTED_LANGUAGES,
             saveMissing: false,
             detection: {
-                order: ['querystring', 'localStorage', 'cookie', 'defaultPolish'],
+                order: ['querystring', 'localStorage', 'cookie', 'defaultLanguage'],
                 caches: ['localStorage', 'cookie']
             },
             backend: {
