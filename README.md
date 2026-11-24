@@ -1,15 +1,52 @@
 # EverdellScore
 Serverless JS App for counting Everdell Score.
 
+> **Fork notice.** This is a modified fork of [tadeaustria/EverdellScore](https://github.com/tadeaustria/EverdellScore)
+> by Tade Barthler, distributed under the [GNU GPL-3.0](LICENSE), like the original.
+> Changes in this fork (v2.0.0, 2026):
+> * new default **category scoring mode** (`index.html`): points are entered per category for all players at once,
+>   totals and ranking (with ties) are always visible, state is kept in the browser (localStorage);
+> * **1–6 players** in both modes (the card mode moved to `cards.html`);
+> * player names (any language, incl. Polish characters) shared by both modes;
+> * Polish as the default language when no language was chosen before; all six languages are kept.
+
+## Category scoring mode (fork)
+Pick the number of players (1–6), enter names and enable expansions in *Game settings*. Then type the points of each
+category in one row for all players; **Enter** jumps to the next field (next player, then next category).
+Use the **±** button for negative values (e.g. the Fool, −2) on phones whose numeric keyboard has no minus key.
+*Pearls* are entered as a count and scored ×2. *New game* clears the points and keeps names, player count and expansions.
+
+| Category | Expansion |
+|---|---|
+| Traveler / Production / Destination / Governance / Prosperity cards, prosperity bonuses, point tokens, journey, special events, other | base game |
+| Basic events | base game (hidden with Pearlbrook, same rule as the card mode) |
+| Garland award | Bellfaire |
+| Pearls (×2), wonders, adornments | Pearlbrook |
+| Expeditions, discoveries | Spirecrest |
+| Visitors | Newleaf |
+
+Cards of Mistwood, Glimmergold, Kindergarten and legendary cards are counted in the card colour categories.
+
+## Running locally
+Translations are loaded over HTTP, so opening the file directly (`file://`) does not work. Run a static server
+in the repository folder, e.g. `python -m http.server 8000`, and open <http://localhost:8000/>.
+There is no build step; GitHub Pages can publish the repository root of the `main` branch as it is.
+
 ## Content
 As the summing up the total points of a game of Everdell can be complex, this application should help players to identify the winner of the game faster.
 It allows you to choose all the cards per player and will give the sum up the total points per player. Special effects of prosperity cards are determined automatically, while for some Special Event cards a manual input must be done.
 The application also prevents that cards are multiple chosen, if not allowed (e.g. unique cards or number of cards).
 
 ## Personal Data
-Cookies for storing the chosen language.
+Cookies for storing the chosen language. The category mode stores names and points in the browser's localStorage only.
 
 # Updates
+
+## Version 2.0.0 (fork)
+* Category scoring mode (new start page), card mode moved to `cards.html`
+* 1–6 players in both modes, shared player names
+* Polish default language; new texts translated in all six languages
+* Handlebars pinned to 4.7.8, broken icon link and obsolete appcache attribute fixed
 
 ## Version 1.6.2
 * More spanish translations
