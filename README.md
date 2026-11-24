@@ -48,6 +48,7 @@ Cookies for storing the chosen language. The category mode stores names and poin
 * 1–6 players in both modes, shared player names
 * English default language (choice remembered); new texts translated in all six languages
 * Handlebars pinned to 4.7.8, broken icon link and obsolete appcache attribute fixed
+* Google Analytics of the original site removed (no tracking in this fork)
 
 ## Version 1.6.2
 * More spanish translations
